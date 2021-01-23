@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- TextViews -->
+    <dimen name="size_title">35sp</dimen>
+    <dimen name="size_title_land">30sp</dimen>
+    <dimen name="padding_title_land">10dip</dimen>
+
+    <!-- Images -->
+    <dimen name="size_image_height">200dip</dimen>
+    <dimen name="size_image_width">@dimen/size_image_height</dimen>
+    <dimen name="size_image_height_land">100dip</dimen>
+    <dimen name="size_image_width_land">@dimen/size_image_height_land</dimen>
+
+
+</resources>
