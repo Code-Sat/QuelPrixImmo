@@ -5,42 +5,60 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <LinearLayout
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="horizontal"
-        tools:context="peio.fouillot.projetandroid.MainActivity">
+        android:orientation="vertical"
+        tools:context="peio.fouillot.projetandroid.controller.MainActivity">
 
-        <!-- Block 1 first half of the screen -->
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:background="#BED4D6"
-            android:gravity="center"
-            android:layout_weight="1">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:padding="40dip"
-                android:text="ProjetAndroid, c'est vraiment le top du top !"
-                android:textAlignment="center"
-                android:textColor="@color/blue"
-                android:textSize="@dimen/size_title_land" />
-
-        </LinearLayout>
-
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/activity_main_toolbar"
+            android:minHeight="?attr/actionBarSize"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:titleTextColor="@color/white"
+            android:background="@color/colorPrimary"
+            android:theme="@style/ToolbarTheme"
+            app:titleTextAppearance="@style/Toolbar.TitleText"/>
 
         <LinearLayout
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:gravity="center"
-            android:layout_weight="1">
+            android:orientation="horizontal">
 
-            <ImageView
-                android:layout_width="@dimen/size_image_width_land"
-                android:layout_height="@dimen/size_image_height_land"
-                android:src="@drawable/ic_launcher"/>
+            <!-- Block 1 first half of the screen -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:background="#BED4D6"
+                android:gravity="center"
+                android:layout_weight="1">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="40dip"
+                    android:text="ProjetAndroid, c'est vraiment le top du top !"
+                    android:textAlignment="center"
+                    android:textColor="@color/blue"
+                    android:textSize="@dimen/size_title_land" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:layout_weight="1">
+
+                <ImageView
+                    android:layout_width="@dimen/size_image_width_land"
+                    android:layout_height="@dimen/size_image_height_land"
+                    android:src="@drawable/ic_launcher"/>
+            </LinearLayout>
+
         </LinearLayout>
 
     </LinearLayout>
