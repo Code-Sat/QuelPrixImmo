@@ -8,7 +8,15 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="blue">#3486EB</color>
+
+    <!-- TEXT COLOR -->
     <color name="colorPrimary">#1569d1</color>
     <color name="colorPrimaryDark">#1154a7</color>
     <color name="colorAccent">#F4F7F8</color>
+    <color name="colorFontTextView">#777777</color>
+
+    <!-- SEEKBAR COLOR -->
+    <color name="colorSeekbarBackground">#3486EB</color>
+    <color name="colorSeekbarSelected">#1154a7</color>
+
 </resources>
