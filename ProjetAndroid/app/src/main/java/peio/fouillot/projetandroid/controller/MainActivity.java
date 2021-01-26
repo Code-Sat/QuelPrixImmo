@@ -5,13 +5,18 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import peio.fouillot.projetandroid.R;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
+
+    private Button searchBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,6 +24,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         this.configureToolbar();
+        this.configureButtonSearch();
     }
 
     @Override
@@ -47,8 +53,24 @@ public class MainActivity extends AppCompatActivity {
 
     private void configureToolbar(){
         // Get the toolbar view inside the activity layout
-        Toolbar toolbar = (Toolbar) findViewById(R.id.activity_main_toolbar);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         //Set the Toolbar
         setSupportActionBar(toolbar);
+    }
+
+    private void configureButtonSearch(){
+        //Serialise Button
+        this.searchBtn = (Button) findViewById(R.id.activity_main_button_search);
+        //Set OnClick Listener on Button
+        searchBtn.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v){
+                launchStatisticActivity();
+            }
+        });
+    }
+
+    private void launchStatisticActivity(){
+        Intent intent = new Intent(MainActivity.this, StatisticActivity.class);
+        this.startActivity(intent);
     }
 }

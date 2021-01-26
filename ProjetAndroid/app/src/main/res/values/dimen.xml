@@ -12,5 +12,9 @@
     <dimen name="size_image_height_land">100dip</dimen>
     <dimen name="size_image_width_land">@dimen/size_image_height_land</dimen>
 
+    <!-- Button -->
+    <dimen name="size_button_height">50dip</dimen>
+    <dimen name="size_button_width">150dip</dimen>
+
 
 </resources>

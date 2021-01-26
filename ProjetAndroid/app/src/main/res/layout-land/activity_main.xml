@@ -13,15 +13,10 @@
         android:orientation="vertical"
         tools:context="peio.fouillot.projetandroid.controller.MainActivity">
 
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/activity_main_toolbar"
-            android:minHeight="?attr/actionBarSize"
-            android:layout_width="match_parent"
+        <include
+            layout="@layout/toolbar"
             android:layout_height="wrap_content"
-            app:titleTextColor="@color/white"
-            android:background="@color/colorPrimary"
-            android:theme="@style/ToolbarTheme"
-            app:titleTextAppearance="@style/Toolbar.TitleText"/>
+            android:layout_width="match_parent" />
 
         <LinearLayout
             android:layout_width="match_parent"
