@@ -34,7 +34,7 @@
                 android:text="Nombre de pièces"/>
 
             <com.google.android.material.slider.RangeSlider
-                android:id="@+id/range_slider"
+                android:id="@+id/activity_main_slider_room_number"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:valueFrom="1"
@@ -42,15 +42,6 @@
                 android:stepSize="1"
                 app:values="@array/rangeSliderValues"
                 style="@style/Widget.App.Slider"/>
-
-            <SeekBar
-                android:id="@+id/activity_main_seekbar_room_number"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:progressDrawable="@drawable/seek_bar"
-                android:thumb="@drawable/seek_thumb"
-                android:progress="500"
-                android:max="2000" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -94,6 +85,7 @@
                     <RadioButton
                         android:id="@+id/activity_main_radioBtn_house"
                         android:checked="true"
+                        android:buttonTint="@color/colorPrimary"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textColor="@color/colorFontTextView"
@@ -118,14 +110,15 @@
                 android:textSize="@dimen/size_text"
                 android:text="Rayon de recherche"/>
 
-            <SeekBar
-                android:id="@+id/activity_main_seekbar_distance"
+            <com.google.android.material.slider.Slider
+                android:id="@+id/activity_main_slider_distance"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:progressDrawable="@drawable/seek_bar"
-                android:thumb="@drawable/seek_thumb"
-                android:progress="500"
-                android:max="2000" />
+                android:valueFrom="0"
+                android:valueTo="2000"
+                android:stepSize="100"
+                app:values="@array/rangeSliderValues"
+                style="@style/Widget.App.Slider"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
