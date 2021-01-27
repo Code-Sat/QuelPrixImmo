@@ -28,7 +28,17 @@
         </activity>
         <activity
             android:name=".controller.SettingsActivity"
-            android:label="Statistic"
+            android:label="Settings"
+            android:parentActivityName=".controller.MainActivity">
+
+            <!-- Parent activity meta-data to support 4.0 and lower -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".controller.MainActivity" />
+        </activity>
+        <activity
+            android:name=".controller.ResultActivity"
+            android:label="Result"
             android:parentActivityName=".controller.MainActivity">
 
             <!-- Parent activity meta-data to support 4.0 and lower -->
@@ -37,5 +47,4 @@
                 android:value=".controller.MainActivity" />
         </activity>
     </application>
-
 </manifest>

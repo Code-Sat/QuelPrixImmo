@@ -74,7 +74,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void launchStatisticActivity(){
-        Intent intent = new Intent(MainActivity.this, StatisticActivity.class);
+        Intent intent = new Intent(MainActivity.this, ResultActivity.class);
         this.startActivity(intent);
     }
 }
