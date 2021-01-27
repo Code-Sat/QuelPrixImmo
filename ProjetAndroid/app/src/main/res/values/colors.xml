@@ -19,4 +19,8 @@
     <color name="colorSeekbarBackground">#3486EB</color>
     <color name="colorSeekbarSelected">#1154a7</color>
 
+    <color name="seek_bar_background">#ababab</color>
+    <color name="seek_bar_secondary_progress">#3399CC</color>
+
+
 </resources>

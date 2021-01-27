@@ -20,6 +20,9 @@
 
     <!-- Seekbar -->
     <dimen name="size_seekbar_height">15dip</dimen>
+    <dimen name="seek_bar_thickness">4dp</dimen>
+    <dimen name="seek_bar_thumb_size">20dp</dimen>
+
 
     <!-- PADDING ON MAIN MENU -->
     <dimen name="title_padding_top">25dp</dimen>
