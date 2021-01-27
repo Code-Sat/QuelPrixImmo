@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">ProjetAndroid</string>
+    <string-array name="rangeSliderValues">
+        <item>1</item>
+        <item>3</item>
+    </string-array>
 </resources>
