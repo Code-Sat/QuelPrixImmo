@@ -9,7 +9,6 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.ProjetAndroid">
-
         <activity android:name=".controller.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -17,14 +16,25 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <activity android:name=".controller.StatisticActivity"
+        <activity
+            android:name=".controller.StatisticActivity"
             android:label="Statistic"
             android:parentActivityName=".controller.MainActivity">
 
             <!-- Parent activity meta-data to support 4.0 and lower -->
-            <meta-data android:name="android.support.PARENT_ACTIVITY"
-                android:value=".controller.MainActivity"/>
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".controller.MainActivity" />
+        </activity>
+        <activity
+            android:name=".controller.SettingsActivity"
+            android:label="Statistic"
+            android:parentActivityName=".controller.MainActivity">
+
+            <!-- Parent activity meta-data to support 4.0 and lower -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".controller.MainActivity" />
         </activity>
     </application>
 

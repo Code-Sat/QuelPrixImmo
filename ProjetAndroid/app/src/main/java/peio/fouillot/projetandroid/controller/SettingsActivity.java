@@ -7,13 +7,12 @@ import peio.fouillot.projetandroid.R;
 
 import android.os.Bundle;
 
-
-public class StatisticActivity extends AppCompatActivity {
+public class SettingsActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_statistic);
+        setContentView(R.layout.activity_settings);
 
         this.configureToolbar();
     }
@@ -26,7 +25,7 @@ public class StatisticActivity extends AppCompatActivity {
         //Get a support ActionBar corresponding to this toolbar
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setTitle("Rechercher un bien");
-
+        getSupportActionBar().setTitle("Paramètres de recherche");
     }
+
 }
