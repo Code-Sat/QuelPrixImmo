@@ -25,6 +25,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.android.material.slider.RangeSlider;
 import com.google.android.material.slider.Slider;
 
 import org.json.JSONArray;
@@ -44,6 +45,7 @@ public class MainActivity extends AppCompatActivity {
     private RadioGroup radioGrp;
     private RadioButton radioBtnSelected;
     private Slider sliderDistance;
+    private RangeSlider rangeSliderRoom;
     private UrlValueHolder valueHolder;
 
     //test
@@ -57,8 +59,6 @@ public class MainActivity extends AppCompatActivity {
 
         mTextView = findViewById(R.id.text_view_result);
         mRequestQueue = Volley.newRequestQueue(this);
-
-        valueHolder = new UrlValueHolder();
 
         this.configureToolbar();
         this.addListenerOnButton();
@@ -104,6 +104,11 @@ public class MainActivity extends AppCompatActivity {
         this.searchBtn = (Button) findViewById(R.id.activity_main_button_search);
         this.radioGrp = (RadioGroup) findViewById(R.id.activity_main_radioBtn_grp);
         this.sliderDistance = (Slider) findViewById(R.id.activity_main_slider_distance);
+        this.rangeSliderRoom = (RangeSlider) findViewById(R.id.activity_main_slider_room_number);
+
+        valueHolder = new UrlValueHolder();
+        valueHolder.setValues(rangeSliderRoom.getValues());
+        Log.i("TEST", "Value of values : " + rangeSliderRoom.getValues());
 
         //Set OnClick Listener on Button
         searchBtn.setOnClickListener(new View.OnClickListener() {
@@ -146,9 +151,7 @@ public class MainActivity extends AppCompatActivity {
                         error.printStackTrace();
                     }
                 });
-
                 mRequestQueue.add(request);
-
             }
         });
 
@@ -157,6 +160,14 @@ public class MainActivity extends AppCompatActivity {
             public void onValueChange(@NonNull Slider slider, float value, boolean fromUser) {
                 valueHolder.setDistance((int) sliderDistance.getValue());
                 Log.i("TEST", String.valueOf(valueHolder.getDistance()));
+            }
+        });
+
+        rangeSliderRoom.addOnChangeListener(new RangeSlider.OnChangeListener() {
+            @Override
+            public void onValueChange(@NonNull RangeSlider slider, float value, boolean fromUser) {
+               valueHolder.setValues(rangeSliderRoom.getValues());
+                Log.i("TEST", rangeSliderRoom.getValues().toString());
             }
         });
     }
