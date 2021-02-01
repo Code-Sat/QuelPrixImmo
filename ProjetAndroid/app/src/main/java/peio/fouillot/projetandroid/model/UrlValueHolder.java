@@ -1,16 +1,19 @@
 package peio.fouillot.projetandroid.model;
 
 import java.io.Serializable;
+import java.util.List;
 
 public class UrlValueHolder implements Serializable{
 
     private int distance = 500;
 
+    private List<Float> values; // values[minRoom, maxRoom] store the room segment between 1-8
+
     private float longitude;
     private float latitude;
 
-    private String type_local; //Maison - appartement
-    private String jsonHolder; //To keep the url response
+    private String type_local; //House or Apartment
+    private String jsonHolder;
 
     public UrlValueHolder(int distance, String type_local, float longitude, float latitude) {
         this.distance = distance;
@@ -25,6 +28,14 @@ public class UrlValueHolder implements Serializable{
         final_url = "http://api.cquest.org/dvf?lat=" + String.valueOf(latitude) + "&lon=" + String.valueOf(longitude) + "&dist=" + distance + "&type_local=" + type_local;
 
         return final_url;
+    }
+
+    public List<Float> getValues() {
+        return values;
+    }
+
+    public void setValues(List<Float> values) {
+        this.values = values;
     }
 
     public UrlValueHolder() {
