@@ -12,12 +12,12 @@ import java.util.ArrayList;
 
 import peio.fouillot.projetandroid.R;
 
-public class ResultAdapter extends ArrayAdapter<UrlValueHolder> {
+public class ResultAdapter extends ArrayAdapter<StringHolder> {
     private final Context context;
-    private final ArrayList<UrlValueHolder> data;
+    private final ArrayList<StringHolder> data;
     private final int layoutResourceId;
 
-    public ResultAdapter(Context context, int layoutResourceId, ArrayList<UrlValueHolder> data) {
+    public ResultAdapter(Context context, int layoutResourceId, ArrayList<StringHolder> data) {
         super(context, layoutResourceId, data);
         this.context = context;
         this.data = data;
@@ -46,11 +46,11 @@ public class ResultAdapter extends ArrayAdapter<UrlValueHolder> {
             listViewHolder = (ListViewHolder)row.getTag();
         }
 
-        UrlValueHolder valueHolder = data.get(position);
+        StringHolder stringHolder = data.get(position);
 
-        listViewHolder.textView1.setText(valueHolder.getResultList0());
-        listViewHolder.textView2.setText(valueHolder.getResultList1());
-        listViewHolder.textView3.setText(valueHolder.getResultList2());
+        listViewHolder.textView1.setText(stringHolder.getResultList0());
+        listViewHolder.textView2.setText(stringHolder.getResultList1());
+        listViewHolder.textView3.setText(stringHolder.getResultList2());
 
         return row;
     }

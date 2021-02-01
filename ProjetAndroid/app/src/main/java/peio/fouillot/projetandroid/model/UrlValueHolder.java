@@ -12,34 +12,6 @@ public class UrlValueHolder implements Serializable{
     private String type_local; //Maison - appartement
     private String jsonHolder; //To keep the url response
 
-    private String resultList0;
-    private String resultList1;
-    private String resultList2;
-
-    public String getResultList0() {
-        return resultList0;
-    }
-
-    public void setResultList0(String resultList0) {
-        this.resultList0 = resultList0;
-    }
-
-    public String getResultList1() {
-        return resultList1;
-    }
-
-    public void setResultList1(String resultList1) {
-        this.resultList1 = resultList1;
-    }
-
-    public String getResultList2() {
-        return resultList2;
-    }
-
-    public void setResultList2(String resultList2) {
-        this.resultList2 = resultList2;
-    }
-
     public UrlValueHolder(int distance, String type_local, float longitude, float latitude) {
         this.distance = distance;
         this.type_local = type_local;
