@@ -19,16 +19,24 @@
             android:layout_width="match_parent" />
 
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:gravity="center">
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="This is Result page"
-                android:textSize="25sp"/>
+        <TextView
+            android:id="@+id/activity_result_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="This is Result page"
+            android:textSize="18sp"
+            android:paddingBottom="6dp"
+            android:paddingTop="6dp"
+            android:gravity="center"/>
+
+        <ListView
+            android:id="@+id/activity_result_list_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
 
         </LinearLayout>
 
