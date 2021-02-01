@@ -72,12 +72,20 @@ public class ResultActivity extends AppCompatActivity {
             StringHolder stringHolder = new StringHolder();
             JSONObject jsonObject = jsonArray.getJSONObject(i).getJSONObject("properties");
 
-            if(valueHolder.getType_local().equals(jsonObject.getString("type_local"))) {
+            float roomNumber = Float.valueOf(jsonObject.getString("nombre_pieces_principales"));
+            Log.i("TEST", String.valueOf(roomNumber));
 
-                stringHolder.setResultList0(jsonObject.optString("numero_voie") + " " + jsonObject.optString("type_voie") + " " + jsonObject.getString("voie") + ", " + jsonObject.getString("code_postal") + " " + jsonObject.getString("commune"));
-                stringHolder.setResultList1(jsonObject.optString("type_local") + " " + jsonObject.getInt("nombre_pieces_principales") + " pièces de " + jsonObject.getInt("surface_relle_bati") + "m²");
-                stringHolder.setResultList2("Vendu à " + jsonObject.getInt("valeur_fonciere") + " - " + jsonObject.getInt("valeur_fonciere")  / jsonObject.getInt("surface_relle_bati") + "€/m²");
-                resultArray.add(stringHolder);
+            //1:Condition to get only selected type_local (house/apartment) and room number
+            if( valueHolder.getType_local().equals(jsonObject.getString("type_local"))) {
+
+                //TODO condition more than 8
+                if(roomNumber >= valueHolder.getValues().get(0) && roomNumber <= valueHolder.getValues().get(1) ) {
+                    //if(valueHolder.getValues().get(0) == 7) DO
+                    stringHolder.setResultList0(jsonObject.optString("numero_voie") + " " + jsonObject.optString("type_voie") + " " + jsonObject.getString("voie") + ", " + jsonObject.getString("code_postal") + " " + jsonObject.getString("commune"));
+                    stringHolder.setResultList1(jsonObject.optString("type_local") + " " + jsonObject.getInt("nombre_pieces_principales") + " pièces de " + jsonObject.getInt("surface_relle_bati") + "m²");
+                    stringHolder.setResultList2("Vendu à " + jsonObject.getInt("valeur_fonciere") + " - " + jsonObject.getInt("valeur_fonciere") / jsonObject.getInt("surface_relle_bati") + "€/m²");
+                    resultArray.add(stringHolder);
+                }
             }
         }
 
