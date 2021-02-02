@@ -121,6 +121,15 @@
 
         </LinearLayout>
 
+        <Button
+            android:id="@+id/activity_settings_button_validate"
+            android:text="Valider"
+            android:layout_gravity="center"
+            android:theme="@style/MyButtonTheme"
+            android:layout_marginTop="25dp"
+        android:layout_width="@dimen/size_button_width"
+        android:layout_height="@dimen/size_button_height" />
+
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

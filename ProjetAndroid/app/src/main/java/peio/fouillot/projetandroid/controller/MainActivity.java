@@ -15,12 +15,14 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Typeface;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
@@ -55,6 +57,8 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.Writer;
 import java.text.DecimalFormat;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Locale;
 
 import static android.Manifest.permission.ACCESS_FINE_LOCATION;
@@ -100,11 +104,23 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         this.configureDrawerLayout();
         this.configureNavigationView();
         this.checkPreferences();
+        this.getPreferences();
         Log.i("TEST", " Configuration done.");
     }
 
-    //FOR READ // WRITE FILE
+    //Get the preference value and if not set to 500
+    public void getPreferences(){
+        SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(MainActivity.this);
+        Integer savedRayon = settings.getInt("distancePreference", 500);
+        List<Float> list = Arrays.asList( settings.getFloat("roomMin", 1.0f), (settings.getFloat("roomMax", 3.0f)));
+        Log.i("TEST", "Distance Pref : " + savedRayon);
+        Log.i("TEST", "Room Pref : " + list);
 
+        sliderDistance.setValue(Float.valueOf(savedRayon));
+        rangeSliderRoom.setValues(list);
+    }
+
+    //FOR READ // WRITE FILE
     public static void verifyStoragePermissions(Activity activity) {
         // Check if we have write permission
         int permission = ActivityCompat.checkSelfPermission(activity, Manifest.permission.WRITE_EXTERNAL_STORAGE);
@@ -132,12 +148,18 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @Override
     public void onResume() {
         super.onResume();
+
+        //Check Permission for location
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             requestPermission();
             return;
         }
         locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 0, this);
         locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, this);
+
+        //Check Preferences
+        getPreferences();
+
     }
 
     @Override
@@ -285,7 +307,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             @Override
             public void onValueChange(@NonNull Slider slider, float value, boolean fromUser) {
                 valueHolder.setDistance((int) sliderDistance.getValue());
-                Log.i("TEST", String.valueOf(valueHolder.getDistance()));
+                Log.i("TEST", "OnvalueChange sliderDist" + String.valueOf(valueHolder.getDistance()));
             }
         });
 
@@ -293,7 +315,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             @Override
             public void onValueChange(@NonNull RangeSlider slider, float value, boolean fromUser) {
                 valueHolder.setValues(rangeSliderRoom.getValues());
-                Log.i("TEST", rangeSliderRoom.getValues().toString());
+                Log.i("TEST", "OnvalueChange rangeSliderRoom" +  rangeSliderRoom.getValues().toString());
             }
         });
     }

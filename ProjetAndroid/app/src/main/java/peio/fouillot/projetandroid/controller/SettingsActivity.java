@@ -4,21 +4,29 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.GravityCompat;
 import peio.fouillot.projetandroid.R;
 
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 
 import com.google.android.material.slider.LabelFormatter;
 import com.google.android.material.slider.RangeSlider;
 import com.google.android.material.slider.Slider;
 
+import java.util.List;
 import java.util.Locale;
 
 public class SettingsActivity extends AppCompatActivity {
 
     Slider sliderDistance;
     RangeSlider rangeSliderRoom;
+    Button btnValidate;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,9 +37,15 @@ public class SettingsActivity extends AppCompatActivity {
         this.addListener();
     }
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        savePreferences();
+    }
     private void addListener() {
         rangeSliderRoom = findViewById(R.id.activity_settings_slider_room_number);
         sliderDistance = findViewById(R.id.activity_settings_slider_distance);
+        btnValidate = findViewById(R.id.activity_settings_button_validate);
 
         //TO CUSTOMIZE THE LAST LABEL OF THE RANGESLIDER
         rangeSliderRoom.setLabelFormatter(new LabelFormatter() {
@@ -45,10 +59,22 @@ public class SettingsActivity extends AppCompatActivity {
             }
         });
 
+        btnValidate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                savePreferences();
+                finish();
+            }
+        });
+
         rangeSliderRoom.addOnChangeListener(new RangeSlider.OnChangeListener() {
             @Override
             public void onValueChange(@NonNull RangeSlider slider, float value, boolean fromUser) {
-                //TODO Save on SharePreferences data
+                SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(SettingsActivity.this);
+                SharedPreferences.Editor ed = pref.edit();
+                List<Float> aux = rangeSliderRoom.getValues();
+                ed.putFloat("roomMin",  aux.get(0));
+                ed.putFloat("roomMax", aux.get(1));
                 Log.i("TEST", rangeSliderRoom.getValues().toString());
             }
         });
@@ -58,8 +84,11 @@ public class SettingsActivity extends AppCompatActivity {
         sliderDistance.addOnChangeListener(new Slider.OnChangeListener() {
             @Override
             public void onValueChange(@NonNull Slider slider, float value, boolean fromUser) {
-                //TODO Save on SharePreferences data
-                Log.i("TEST", String.valueOf(sliderDistance.getValue()));
+                /*SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(SettingsActivity.this);
+                SharedPreferences.Editor ed = pref.edit();
+                float val = sliderDistance.getValue();
+                ed.putString("distancePreference", String.valueOf(val));
+                Log.i("TEST", String.valueOf(sliderDistance.getValue()));*/
             }
         });
     }
@@ -71,8 +100,24 @@ public class SettingsActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         //Get a support ActionBar corresponding to this toolbar
         ActionBar actionBar = getSupportActionBar();
-        actionBar.setDisplayHomeAsUpEnabled(true);
+        actionBar.setDisplayHomeAsUpEnabled(false);
         getSupportActionBar().setTitle("Paramètres de l'application");
+    }
+    private void savePreferences() {
+
+        Log.i("INFO", "GUess who's back !!! ");
+
+        SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(SettingsActivity.this);
+        SharedPreferences.Editor ed = pref.edit();
+
+        float val = sliderDistance.getValue();
+        ed.putString("distancePreference", String.valueOf(val));
+        Log.i("TEST", "Distance : " +  String.valueOf(sliderDistance.getValue()));
+
+        List<Float> aux = rangeSliderRoom.getValues();
+        ed.putFloat("roomMin",  aux.get(0));
+        ed.putFloat("roomMax", aux.get(1));
+        Log.i("TEST", "Room : " + rangeSliderRoom.getValues().toString());
     }
 
 }
