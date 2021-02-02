@@ -1,9 +1,9 @@
 <resources>
     <string name="app_name">ProjetAndroid</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
     <string-array name="rangeSliderValues">
         <item>1</item>
         <item>3</item>
     </string-array>
-    <string name="navigation_drawer_open">Open navigation drawer</string>
-    <string name="navigation_drawer_close">Close navigation drawer</string>
 </resources>
