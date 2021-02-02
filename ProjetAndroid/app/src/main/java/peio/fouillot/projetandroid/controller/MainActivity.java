@@ -188,6 +188,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             super.onBackPressed();
         }
     }
+
     private void addListenerOnButton() {
 
         this.searchBtn = (Button) findViewById(R.id.activity_main_button_search);

@@ -14,17 +14,112 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:gravity="center">
-
+        android:orientation="vertical"
+        android:paddingTop="80dp">
 
         <TextView
-            android:id="@+id/textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="25sp"
-            android:text="Welcome to settings activity"
-            android:gravity="center"
-            />
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="25dp"
+            android:layout_marginBottom="30dp"
+            android:textStyle="bold"
+            android:text="Sélection les valeurs par défaut"
+            android:layout_gravity="center"
+            android:textSize="22sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"
+            android:text="Nombre de pièces : "
+            android:layout_gravity="center"
+            android:textSize="20sp" />
+
+        <com.google.android.material.slider.RangeSlider
+            android:id="@+id/activity_settings_slider_room_number"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:valueFrom="1"
+            android:valueTo="8"
+            android:stepSize="1"
+            app:values="@array/rangeSliderValues"
+            style="@style/Widget.App.Slider"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="@dimen/left_border_padding"
+                android:textColor="@color/colorFontTextView"
+                android:textSize="@dimen/size_seekbar_text"
+                android:text="1 pièce"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingRight="@dimen/right_border_padding"
+                android:gravity="right"
+                android:textColor="@color/colorFontTextView"
+                android:textSize="@dimen/size_seekbar_text"
+                android:text="pièces illimité"/>
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="20dp"
+            android:text="Distance de recherche : "
+            android:textSize="20sp" />
+
+
+        <com.google.android.material.slider.Slider
+            android:id="@+id/activity_settings_slider_distance"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:valueFrom="0"
+            android:valueTo="2000"
+            android:stepSize="100"
+            style="@style/Widget.App.Slider"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="@dimen/left_border_padding"
+                android:textColor="@color/colorFontTextView"
+                android:textSize="@dimen/size_seekbar_text"
+                android:text="0 m"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingRight="@dimen/right_border_padding"
+                android:gravity="right"
+                android:textColor="@color/colorFontTextView"
+                android:textSize="@dimen/size_seekbar_text"
+                android:text="2000 m"/>
+
+        </LinearLayout>
 
     </LinearLayout>
 
