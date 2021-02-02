@@ -29,6 +29,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.android.material.navigation.NavigationView;
+import com.google.android.material.slider.LabelFormatter;
 import com.google.android.material.slider.RangeSlider;
 import com.google.android.material.slider.Slider;
 
@@ -42,6 +43,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
 
@@ -82,6 +84,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         switch (id){
             case R.id.activity_main_drawer_graph :
                 Log.i("TEST", " activity_main_drawer_graph ! ");
+                launchGraphActivity();
                 break;
             case R.id.activity_main_drawer_settings :
                 Log.i("TEST", " activity_main_drawer_settings ! ");
@@ -94,7 +97,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 break;
         }
         this.drawerLayout.closeDrawer(GravityCompat.START);
-        Log.i("TEST", " onNavigationItemSelected ! ");
 
         return true;
     }
@@ -123,7 +125,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
-        Log.i("TEST", " syncState ! ");
     }
     private void configureNavigationView() {
         this.navigationView = (NavigationView) findViewById(R.id.activity_main_nav_view);
@@ -137,6 +138,18 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         this.radioGrp = (RadioGroup) findViewById(R.id.activity_main_radioBtn_grp);
         this.sliderDistance = (Slider) findViewById(R.id.activity_main_slider_distance);
         this.rangeSliderRoom = (RangeSlider) findViewById(R.id.activity_main_slider_room_number);
+
+        //Custom value for
+        rangeSliderRoom.setLabelFormatter(new LabelFormatter() {
+          @NonNull
+          @Override
+          public String getFormattedValue(float value) {
+            //It is just an example
+            if (value == 8.0f)
+              return "Illimité";
+           return String.format(Locale.FRENCH, "%.0f", value);
+          }
+        });
 
         valueHolder = new UrlValueHolder();
         valueHolder.setValues(rangeSliderRoom.getValues());
@@ -205,7 +218,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
     private void launchGraphActivity() {
-
+        Log.i("INFO", "Starting graph activity.");
+        Intent intent = new Intent(MainActivity.this, GraphActivity.class);
+        this.startActivity(intent);
     }
     private void launchSettingsActivity() {
         Log.i("INFO", "Starting settings activity.");
