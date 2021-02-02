@@ -15,6 +15,7 @@
     <color name="colorPrimaryLow">#3586EB</color>
     <color name="colorAccent">#F4F7F8</color>
     <color name="colorFontTextView">#777777</color>
+    <color name="colorPink">#BA1DD5</color>
 
     <!-- SEEKBAR COLOR -->
     <color name="colorSeekbarBackground">#3486EB</color>

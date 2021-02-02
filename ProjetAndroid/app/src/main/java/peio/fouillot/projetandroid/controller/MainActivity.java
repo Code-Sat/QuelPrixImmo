@@ -1,8 +1,11 @@
 package peio.fouillot.projetandroid.controller;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 import peio.fouillot.projetandroid.R;
 import peio.fouillot.projetandroid.model.UrlValueHolder;
 
@@ -25,6 +28,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.slider.RangeSlider;
 import com.google.android.material.slider.Slider;
 
@@ -39,7 +43,7 @@ import java.io.InputStreamReader;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
 
     private Button searchBtn;
     private RadioGroup radioGrp;
@@ -47,6 +51,11 @@ public class MainActivity extends AppCompatActivity {
     private Slider sliderDistance;
     private RangeSlider rangeSliderRoom;
     private UrlValueHolder valueHolder;
+
+    //FOR DRAWER DESIGN
+    private Toolbar toolbar;
+    private DrawerLayout drawerLayout;
+    private NavigationView navigationView;
 
     //test
     private TextView mTextView;
@@ -62,40 +71,63 @@ public class MainActivity extends AppCompatActivity {
 
         this.configureToolbar();
         this.addListenerOnButton();
+        this.configureDrawerLayout();
+        this.configureNavigationView();
+        Log.i("TEST", " Configuration done.");
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_activity_main, menu);
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        int id = item.getItemId();
+        switch (id){
+            case R.id.activity_main_drawer_graph :
+                Log.i("TEST", " activity_main_drawer_graph ! ");
+                break;
+            case R.id.activity_main_drawer_settings :
+                Log.i("TEST", " activity_main_drawer_settings ! ");
+                launchSettingsActivity();
+                break;
+            case R.id.activity_main_drawer_layout :
+                Log.i("TEST", " activity_main_drawer_layout ! ");
+                break;
+            default:
+                break;
+        }
+        this.drawerLayout.closeDrawer(GravityCompat.START);
+        Log.i("TEST", " onNavigationItemSelected ! ");
+
         return true;
     }
 
+    //Close the Drawer nav if back button is pressed
     @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-
-        //3 - Handle actions on menu items
-        switch (item.getItemId()) {
-            case R.id.menu_activity_main_params:
-                Toast.makeText(this, "Il n'y a rien à voir ici, passez votre chemin...", Toast.LENGTH_SHORT).show();
-                Log.i("INFO", "Item more settings");
-                return true;
-            case R.id.menu_activity_main_settings:
-                Intent intent = new Intent(MainActivity.this, SettingsActivity.class);
-                this.startActivity(intent);
-                Log.i("INFO", "Starting settings activity");
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
+    public void onBackPressed() {
+        if(this.drawerLayout.isDrawerOpen(GravityCompat.START)) {
+            this.drawerLayout.closeDrawer(GravityCompat.START);
+        } else {
+            super.onBackPressed();
         }
     }
 
     private void configureToolbar() {
         // Get the toolbar view inside the activity layout
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        this.toolbar = (Toolbar) findViewById(R.id.toolbar);
         //Set the Toolbar
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("Rechercher un bien");
         // getSupportActionBar().setDisplayShowTitleEnabled(false);
+    }
+
+    private void configureDrawerLayout() {
+        this.drawerLayout = (DrawerLayout) findViewById(R.id.activity_main_drawer_layout);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        drawerLayout.addDrawerListener(toggle);
+        toggle.syncState();
+        Log.i("TEST", " syncState ! ");
+    }
+    private void configureNavigationView() {
+        this.navigationView = (NavigationView) findViewById(R.id.activity_main_nav_view);
+        navigationView.setNavigationItemSelectedListener(this);
     }
 
     //Add listener search and radio Button too
@@ -170,5 +202,14 @@ public class MainActivity extends AppCompatActivity {
                 Log.i("TEST", rangeSliderRoom.getValues().toString());
             }
         });
+    }
+
+    private void launchGraphActivity() {
+
+    }
+    private void launchSettingsActivity() {
+        Log.i("INFO", "Starting settings activity.");
+        Intent intent = new Intent(MainActivity.this, SettingsActivity.class);
+        this.startActivity(intent);
     }
 }
