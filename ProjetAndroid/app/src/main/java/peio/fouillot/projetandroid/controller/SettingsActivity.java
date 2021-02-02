@@ -25,7 +25,7 @@ public class SettingsActivity extends AppCompatActivity {
         //Get a support ActionBar corresponding to this toolbar
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setTitle("Paramètres de recherche");
+        getSupportActionBar().setTitle("Paramètres de l'application");
     }
 
 }
