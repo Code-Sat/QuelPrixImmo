@@ -47,6 +47,8 @@
                 android:id="@+id/activity_main_slider_room_number"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
                 android:valueFrom="1"
                 android:valueTo="8"
                 android:stepSize="1"
@@ -73,7 +75,7 @@
                     android:gravity="right"
                     android:textColor="@color/colorFontTextView"
                     android:textSize="@dimen/size_seekbar_text"
-                    android:text="+ 8 pièces"/>
+                    android:text="pièces illimité"/>
 
             </LinearLayout>
 
@@ -100,6 +102,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textColor="@color/colorFontTextView"
+                        android:textStyle="bold"
                         android:text="Maison"/>
 
                     <RadioButton
@@ -126,10 +129,11 @@
                 android:id="@+id/activity_main_slider_distance"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
                 android:valueFrom="0"
                 android:valueTo="2000"
                 android:stepSize="100"
-                app:values="@array/rangeSliderValues"
                 style="@style/Widget.App.Slider"/>
 
             <LinearLayout
@@ -169,6 +173,7 @@
 
         </LinearLayout>
 
+    <!-- Navigation View Need to at the bottom to work fine-->
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/activity_main_nav_view"
         android:layout_width="wrap_content"

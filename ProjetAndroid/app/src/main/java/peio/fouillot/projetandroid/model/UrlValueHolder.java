@@ -15,6 +15,8 @@ public class UrlValueHolder implements Serializable{
     private String type_local; //House or Apartment
     private String jsonHolder;
 
+    private String jsonDataPath; //the path to the json file on storage
+
     public UrlValueHolder(int distance, String type_local, float longitude, float latitude) {
         this.distance = distance;
         this.type_local = type_local;
@@ -22,12 +24,9 @@ public class UrlValueHolder implements Serializable{
         this.latitude = latitude;
     }
 
-    public String getFinalUrl(int distance, String type_local, float longitude, float latitude) {
-        String final_url;
-        //ex : "http://api.cquest.org/dvf?lat=44.441&lon=0.322&dist=600";
-        final_url = "http://api.cquest.org/dvf?lat=" + String.valueOf(latitude) + "&lon=" + String.valueOf(longitude) + "&dist=" + distance + "&type_local=" + type_local;
-
-        return final_url;
+    public String getFinalUrl() {
+        //ex : "http://api.cquest.org/dvf?lat=37.02&lon=-122.08&dist=500";
+        return "http://api.cquest.org/dvf?lat=" + String.valueOf(latitude) + "&lon=" + String.valueOf(longitude) + "&dist=" + String.valueOf(distance);
     }
 
     public List<Float> getValues() {
@@ -80,6 +79,15 @@ public class UrlValueHolder implements Serializable{
     public void setJsonHolder(String jsonHolder) {
         this.jsonHolder = jsonHolder;
     }
+
+    public String getJsonDataPath() {
+        return jsonDataPath;
+    }
+
+    public void setJsonDataPath(String jsonDataPath) {
+        this.jsonDataPath = jsonDataPath;
+    }
+
 
     @Override
     public String toString() {
